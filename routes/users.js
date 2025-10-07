@@ -35,10 +35,10 @@ routerUser.get('/profile', (req,res) => {
         message: "Password is invalid"
     }
 */
-routerUser.post('/login', express.json(), (req,res) => {
-  const {username, password} = req.body.username;
+routerUser.post('/login', (req,res) => {
+  const {username, password} = req.body;
 
-  fs.readFile(path.join(__dirname, '../data/users.json'),'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, '../user.json'),'utf8', (err, data) => {
     if(err){
       return res.status(500).send('Server Error');
     }
@@ -71,7 +71,7 @@ routerUser.post('/login', express.json(), (req,res) => {
 */
 routerUser.get('/logout', (req,res) => {
   const username = req.query.username;
-  res.send(`<b>{username} successfully logged out.<b>`);
+  res.send(`<b>${username} successfully logged out.<b>`);
 });
 
 module.exports = routerUser;

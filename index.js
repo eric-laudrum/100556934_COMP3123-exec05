@@ -3,14 +3,14 @@ const app = express();
 const userRouter = require('./routes/users');
 
 const router = express.Router();
-
+app.use(express.json());
 
 // Add User Router
 app.use('/api/v1/user', userRouter);
 app.use('/', router);
 
 /*
-- Create new html file name home.html 
+- Create new html file name home.html
 - add <h1> tag with message "Welcome to ExpressJs Tutorial"
 - Return home.html page to client
 */
@@ -26,8 +26,7 @@ Add error handling middleware to handle below error
 
 app.use((err, req, res, next)=>{
   res.status(500).send('Server Error');
-  res.send('This is error router');
-})
+});
 
 app.listen(process.env.port || 8081);
 
